@@ -6,6 +6,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "display.h"
 #include "ply.h"
@@ -18,7 +19,7 @@ static void skip_header(FILE *file)
         char *p = fgets(buffer, 80, file);
 
         if (p == NULL)
-            puts("bunny: fgets error");
+            puts("skip_header(): fgets error");
     } while (strcmp(buffer, "end_header\n") != 0);
 }
 
@@ -30,7 +31,7 @@ static void load_vertices(FILE *file)
         char *p = fgets(buffer, 80, file);
 
         if (p == NULL)
-            puts("bunny: fgets error");
+            puts("load_vertices(): fgets error");
 
         sscanf(buffer, "%f %f %f", &vert[i][0], &vert[i][1], &vert[i][2]);
     }
@@ -51,8 +52,10 @@ void ply_load_mesh()
 {
     FILE *file = fopen(MESH_FILENAME, "r");
 
-    if (file == NULL)
-        perror("bunny");
+    if (file == NULL) {
+        perror("ply_load_mesh()");
+        exit(EXIT_FAILURE);
+    }
 
     skip_header(file);
     load_vertices(file);
