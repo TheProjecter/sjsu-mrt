@@ -2,6 +2,7 @@
 #include "display.h"
 #include "callback.h"
 #include "perspective.h"
+#include "shader.h"
 #include "texture.h"
 #include "main.h"
 
@@ -40,6 +41,7 @@ int main(int argc, char *argv[])
     lighting_setup();
     texture_setup();
     display_setup();
+    shader_init();
 
     glutMainLoop();
     return 0;
