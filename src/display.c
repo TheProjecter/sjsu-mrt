@@ -93,7 +93,7 @@ void display_draw()
     glEnd();
 }
 
-void display_setup()
+void display_init()
 {
     ply_load_mesh();
 

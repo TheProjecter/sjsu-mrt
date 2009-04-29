@@ -9,7 +9,7 @@ void display_rotate_yaw(int direction);
 void display_rotate_pitch(int direction);
 void display_rotate_roll(int direction);
 void display_draw();
-void display_setup();
+void display_init();
 
 extern float vert[NUM_VERTICES][3];
 extern int faces[NUM_FACES][3];

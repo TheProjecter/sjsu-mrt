@@ -3,6 +3,7 @@
 #include "glut.h"
 #include "display.h"
 #include "perspective.h"
+#include "shader.h"
 #include "texture.h"
 #include "callback.h"
 
@@ -71,7 +72,7 @@ static void callback_special(int key, int x, int y)
     glutPostRedisplay();
 }
 
-void callback_setup()
+void callback_init()
 {
     glutDisplayFunc(callback_display);
     glutKeyboardFunc(callback_keyboard);
