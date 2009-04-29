@@ -13,6 +13,7 @@ static void callback_display()
     glutSwapBuffers(); 
 }
 
+#include <stdio.h>
 static void callback_keyboard(unsigned char key, int x, int y)
 {
     switch (key) {
@@ -35,6 +36,9 @@ static void callback_keyboard(unsigned char key, int x, int y)
     case 'R':
     case 'r':
         display_rotate_reset();
+        break;
+    case ' ':
+        shader_select();
         break;
     }
 
