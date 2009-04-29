@@ -4,7 +4,6 @@
 #include "display.h"
 #include "perspective.h"
 #include "shader.h"
-#include "texture.h"
 #include "callback.h"
 
 static void callback_display()
@@ -30,10 +29,6 @@ static void callback_keyboard(unsigned char key, int x, int y)
         perspective_move(-1);
         break;
     /* miscellaneous controls */
-    case 'N':
-    case 'n':
-        texture_select();
-        break;
     case 'R':
     case 'r':
         display_rotate_reset();

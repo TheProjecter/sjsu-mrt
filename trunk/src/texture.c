@@ -4,6 +4,7 @@
 #include "glut.h"
 #include "texture.h"
 
+#if 0
 static float granite[TEXTURE_SIZE][TEXTURE_SIZE][TEXTURE_SIZE][3];
 static float marble[TEXTURE_SIZE][TEXTURE_SIZE][TEXTURE_SIZE][3];
 
@@ -158,4 +159,5 @@ void texture_init()
     /* no texture */
     glBindTexture(GL_TEXTURE_3D, 0);
 }
+#endif
 
