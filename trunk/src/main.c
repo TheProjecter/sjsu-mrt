@@ -6,7 +6,7 @@
 #include "texture.h"
 #include "main.h"
 
-static void lighting_setup()
+static void lighting_init()
 {
     float amb[] = { 0.1, 0.1, 0.1, 1 };
     float diff[] = { 1, 1, 1, 1 };
@@ -36,11 +36,11 @@ int main(int argc, char *argv[])
     glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_LIGHTING);
 
-    callback_setup();
-    perspective_setup();
-    lighting_setup();
-    texture_setup();
-    display_setup();
+    callback_init();
+    perspective_init();
+    lighting_init();
+    texture_init();
+    display_init();
     shader_init();
 
     glutMainLoop();

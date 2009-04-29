@@ -21,7 +21,7 @@ void perspective_move(int direction)
     position_camera();
 }
 
-void perspective_setup()
+void perspective_init()
 {
     glViewport(0, 0, WIDTH, HEIGHT);
     position_camera();

@@ -8,7 +8,7 @@ void perspective_print();
 void perspective_strafe(int direction);
 void perspective_move(int direction);
 void perspective_turn(float phi, float theta);
-void perspective_setup();
+void perspective_init();
 
 extern float phi;
 extern float theta;

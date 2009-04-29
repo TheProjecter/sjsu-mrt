@@ -6,6 +6,6 @@
 #define PI              3.14159265
 
 void texture_select();
-void texture_setup();
+void texture_init();
 
 #endif /* TEXTURE_H */

@@ -129,7 +129,7 @@ void texture_select()
     counter++;
 }
 
-void texture_setup()
+void texture_init()
 {
     generate_noise();
     generate_granite();
