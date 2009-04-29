@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
     callback_init();
     perspective_init();
     lighting_init();
-    texture_init();
+    //texture_init();
     display_init();
     shader_init();
 
