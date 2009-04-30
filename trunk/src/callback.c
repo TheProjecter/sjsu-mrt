@@ -1,6 +1,5 @@
 #include <math.h>
-#include <stdbool.h>
-#include "glut.h"
+#include <GL/glut.h>
 #include "display.h"
 #include "perspective.h"
 #include "shader.h"

@@ -1,4 +1,4 @@
-#include "glut.h"
+#include <GL/glut.h>
 #include "display.h"
 #include "callback.h"
 #include "perspective.h"
@@ -32,14 +32,14 @@ int main(int argc, char *argv[])
     glClearColor(0, 0, 0, 1);
 
     glEnable(GL_DEPTH_TEST);
-    glEnable(GL_TEXTURE_3D);
+    /*glEnable(GL_TEXTURE_3D);*/
     glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_LIGHTING);
 
     callback_init();
     perspective_init();
     lighting_init();
-    //texture_init();
+    /*texture_init();*/
     display_init();
     shader_init();
 

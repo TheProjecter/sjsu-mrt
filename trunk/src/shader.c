@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "glew.h"
+#include <GL/glew.h>
 
 /* shaders */
 static GLhandleARB green;

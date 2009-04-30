@@ -1,7 +1,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
-#include "glut.h"
+#include <GL/glut.h>
 #include "texture.h"
 
 #if 0
