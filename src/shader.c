@@ -71,10 +71,12 @@ void shader_select()
 
 void shader_init()
 {
+    GLhandleARB vert, frag;
+
     glewInit();
 
-    GLhandleARB vert = glCreateShaderObjectARB(GL_VERTEX_SHADER_ARB);
-    GLhandleARB frag = glCreateShaderObjectARB(GL_FRAGMENT_SHADER_ARB);
+    vert = glCreateShaderObjectARB(GL_VERTEX_SHADER_ARB);
+    frag = glCreateShaderObjectARB(GL_FRAGMENT_SHADER_ARB);
 
     glsl_read(vert, "shaders/green.vert.glsl");
     glsl_read(frag, "shaders/green.frag.glsl");
