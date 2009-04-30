@@ -1,5 +1,5 @@
 #include <math.h>
-#include "glut.h"
+#include <GL/glut.h>
 #include "ply.h"
 #include "display.h"
 
@@ -74,6 +74,8 @@ void display_rotate_roll(int direction)
 
 void display_draw()
 {
+    int i, j;
+
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glRotatef(yaw, 0, 0, 1);
@@ -82,8 +84,8 @@ void display_draw()
 
     glColor3f(1, 1, 1);
     glBegin(GL_TRIANGLES);
-    for (int i = 0; i < NUM_FACES; i++)
-        for (int j = 0; j < 3; j++) {
+    for (i = 0; i < NUM_FACES; i++)
+        for (j = 0; j < 3; j++) {
             int vindex = faces[i][j];
 
             glNormal3fv(norm[vindex]);
@@ -95,21 +97,23 @@ void display_draw()
 
 void display_init()
 {
+    int i, j;
+
     ply_load_mesh();
 
-    for (int i = 0; i < NUM_FACES; i++) {
+    for (i = 0; i < NUM_FACES; i++) {
         int *v = faces[i];
         float vn[3];
 
         normal(v[0], v[1], v[2], vn); /* normal of the triangle face */
-        for (int j = 0; j < 3; j++)
+        for (j = 0; j < 3; j++)
             vector_add(vn, v[j]); /* add face normals to vertex normals */
     }
 
-    for (int i = 0; i < NUM_VERTICES; i++) {
+    for (i = 0; i < NUM_VERTICES; i++) {
         normalize(norm[i]);
 
-        for (int j = 0; j < 3; j++)
+        for (j = 0; j < 3; j++)
             tex[i][j] = vert[i][j] * 10 + 1;
     }
 }

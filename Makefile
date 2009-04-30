@@ -2,7 +2,7 @@ target = shader
 objects = $(patsubst %.c,%.o,$(wildcard src/*.c))
 
 CC = gcc
-CFLAGS = -std=c99 -Wall -O2 -I/usr/include/GL
+CFLAGS = -ansi -Wall -O2
 LDFLAGS = -lm -lGLEW -lglut -lGLU -lGL
 
 $(target):	$(objects)

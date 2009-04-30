@@ -25,9 +25,10 @@ static void skip_header(FILE *file)
 
 static void load_vertices(FILE *file)
 {
+    int i;
     char buffer[80];
 
-    for (int i = 0; i < NUM_VERTICES; i++) {
+    for (i = 0; i < NUM_VERTICES; i++) {
         char *p = fgets(buffer, 80, file);
 
         if (p == NULL)
@@ -39,7 +40,8 @@ static void load_vertices(FILE *file)
 
 static void load_faces(FILE *file)
 {
-    for (int i = 0; i < NUM_FACES; i++) {
+    int i;
+    for (i = 0; i < NUM_FACES; i++) {
         int v = fscanf(file, "3 %d %d %d\n",
                        &faces[i][0], &faces[i][1], &faces[i][2]);
 
