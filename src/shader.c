@@ -3,7 +3,7 @@
 #include <GL/glew.h>
 
 /* shaders */
-static GLhandleARB green;
+static GLhandleARB green, negative;
 
 static void glsl_read(GLhandleARB shader, char *filename)
 {
@@ -53,16 +53,45 @@ static void print_info_log(GLhandleARB obj)
     free(info_log);
 }
 
+static void shader_load(GLhandleARB *shader, char *name)
+{
+    GLhandleARB vert, frag;
+    char filename[80];
+
+    vert = glCreateShaderObjectARB(GL_VERTEX_SHADER_ARB);
+    frag = glCreateShaderObjectARB(GL_FRAGMENT_SHADER_ARB);
+
+    sprintf(filename, "shaders/%s.vert.glsl", name);
+    glsl_read(vert, filename);
+    sprintf(filename, "shaders/%s.frag.glsl", name);
+    glsl_read(frag, filename);
+
+    glCompileShaderARB(vert);
+    glCompileShaderARB(frag);
+    print_info_log(vert);
+    print_info_log(frag);
+
+    *shader = glCreateProgramObjectARB();
+    glAttachObjectARB(*shader, vert);
+    glAttachObjectARB(*shader, frag);
+
+    glLinkProgramARB(*shader);
+    print_info_log(*shader);
+}
+
 void shader_select()
 {
-    static int counter = 0;
+    static int counter = 1;
 
-    switch (counter % 2) {
+    switch (counter % 3) {
     case 0:
-        glUseProgramObjectARB(green);
+        glUseProgramObjectARB(0);
         break;
     case 1:
-        glUseProgramObjectARB(0);
+        glUseProgramObjectARB(green);
+        break;
+    case 2:
+        glUseProgramObjectARB(negative);
         break;
     }
 
@@ -71,26 +100,9 @@ void shader_select()
 
 void shader_init()
 {
-    GLhandleARB vert, frag;
-
     glewInit();
 
-    vert = glCreateShaderObjectARB(GL_VERTEX_SHADER_ARB);
-    frag = glCreateShaderObjectARB(GL_FRAGMENT_SHADER_ARB);
-
-    glsl_read(vert, "shaders/green.vert.glsl");
-    glsl_read(frag, "shaders/green.frag.glsl");
-
-    glCompileShaderARB(vert);
-    glCompileShaderARB(frag);
-    print_info_log(vert);
-    print_info_log(frag);
-
-    green = glCreateProgramObjectARB();
-    glAttachObjectARB(green, vert);
-    glAttachObjectARB(green, frag);
-
-    glLinkProgramARB(green);
-    print_info_log(green);
+    shader_load(&green, "green");
+    shader_load(&negative, "negative");
 }
 
