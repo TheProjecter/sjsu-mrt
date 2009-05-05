@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
     /*glEnable(GL_TEXTURE_3D);*/
     glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_LIGHTING);
+    glEnable(GL_NORMALIZE);
 
     callback_init();
     perspective_init();

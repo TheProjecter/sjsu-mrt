@@ -50,6 +50,7 @@ void display_draw()
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    glScalef(2, 2, 2);
     glRotatef(yaw, 0, 0, 1);
     glRotatef(pitch, 0, 1, 0);
     glRotatef(roll, 1, 0, 0);
@@ -87,7 +88,7 @@ void display_init()
     }
 
     for (i = 0; i < NUM_VERTICES; i++) {
-        vector_normalize(norm[i]);
+        /*vector_normalize(norm[i]);*/
 
         for (j = 0; j < 3; j++)
             tex[i][j] = vert[i][j] * 10 + 1;
