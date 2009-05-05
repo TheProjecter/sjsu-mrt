@@ -1,6 +1,7 @@
 #include <math.h>
 #include <GL/glut.h>
 #include "ply.h"
+#include "vector.h"
 #include "display.h"
 
 float vert[NUM_VERTICES][3];
@@ -12,42 +13,13 @@ static float tex[NUM_VERTICES][3];
 /* rotation controls */
 static int yaw, pitch, roll;
 
-static void normalize(float *v)
-{
-    float length = sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
-    v[0] /= length;
-    v[1] /= length;
-    v[2] /= length;
-}
-
-static void vector(int a, int b, float *v)
-{
-    v[0] = vert[a][0] - vert[b][0];
-    v[1] = vert[a][1] - vert[b][1];
-    v[2] = vert[a][2] - vert[b][2];
-}
-
-static void cross_product(float *a, float *b, float *result)
-{
-    result[0] = a[1] * b[2] - b[1] * a[2];
-    result[1] = a[2] * b[0] - b[2] * a[0];
-    result[2] = a[0] * b[1] - b[0] * a[1];
-}
-
-static void normal(int i, int j, int k, float *n)
+static void get_normal(int i, int j, int k, float *n)
 {
     float first[3], second[3];
-    vector(j, i, first);
-    vector(k, i, second);
-    cross_product(first, second, n);
-    normalize(n);
-}
-
-static void vector_add(float *n, int index)
-{
-    norm[index][0] += n[0];
-    norm[index][1] += n[1];
-    norm[index][2] += n[2];
+    vector_sub(vert[j], vert[i], first);
+    vector_sub(vert[k], vert[i], second);
+    vector_cross(first, second, n);
+    vector_normalize(n);
 }
 
 void display_rotate_reset()
@@ -105,13 +77,17 @@ void display_init()
         int *v = faces[i];
         float vn[3];
 
-        normal(v[0], v[1], v[2], vn); /* normal of the triangle face */
-        for (j = 0; j < 3; j++)
-            vector_add(vn, v[j]); /* add face normals to vertex normals */
+        get_normal(v[0], v[1], v[2], vn); /* normal of the triangle face */
+        for (j = 0; j < 3; j++) {
+            int index = v[j];
+
+            /* add face normals to vertex normals */
+            vector_add(vn, norm[index], norm[index]);
+        }
     }
 
     for (i = 0; i < NUM_VERTICES; i++) {
-        normalize(norm[i]);
+        vector_normalize(norm[i]);
 
         for (j = 0; j < 3; j++)
             tex[i][j] = vert[i][j] * 10 + 1;
