@@ -15,21 +15,31 @@ static void callback_display()
 static void callback_keyboard(unsigned char key, int x, int y)
 {
     switch (key) {
-    /* WASD-style controls except A and D are not configured */
+    /* WASD-style controls */
     case 'W':
     case 'w':
         /* forward */
         perspective_move(1);
+        break;
+    case 'A':
+    case 'a':
+        /* left */
+        perspective_strafe(-1);
         break;
     case 'S':
     case 's':
         /* backward */
         perspective_move(-1);
         break;
+    case 'D':
+    case 'd':
+        /* right */
+        perspective_strafe(1);
+        break;
     /* miscellaneous controls */
-    case 'R':
-    case 'r':
-        display_rotate_reset();
+    case 'P':
+    case 'p':
+        perspective_print();
         break;
     case ' ':
         shader_select();
@@ -42,26 +52,25 @@ static void callback_keyboard(unsigned char key, int x, int y)
 static void callback_special(int key, int x, int y)
 {
 	switch (key) {
-    case GLUT_KEY_PAGE_UP:
-        display_rotate_yaw(1);
-        break;
-    case GLUT_KEY_PAGE_DOWN:
-        display_rotate_yaw(-1);
-        break;
     case GLUT_KEY_LEFT:
-        display_rotate_pitch(-1);
+        /* turn left */
+        theta -= 0.01;
         break;
     case GLUT_KEY_RIGHT:
-        display_rotate_pitch(1);
+        /* turn right */
+        theta += 0.01;
         break;
     case GLUT_KEY_UP:
-        display_rotate_roll(1);
+        /* look up */
+        phi -= 0.01;
         break;
     case GLUT_KEY_DOWN:
-        display_rotate_roll(-1);
+        /* look down */
+        phi += 0.01;
         break;
 	}
 
+    perspective_turn(phi, theta);
     glutPostRedisplay();
 }
 

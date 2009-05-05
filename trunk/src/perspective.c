@@ -31,8 +31,8 @@ static void position_camera()
 
 void perspective_load()
 {
-    phi = 2.31;
-    theta = -0.81;
+    phi = 2.12;
+    theta = -0.97;
     x = 0.8;
     y = 0.9;
     z = 0.8;
@@ -46,6 +46,7 @@ void perspective_print()
     printf("location = (%.2f, %.2f, %.2f)\n", x, y, z);
     printf("direction = (%.2f, %.2f, %.2f)\n", lx, ly, lz);
     printf("phi = %.2f, theta = %.2f\n", phi, theta);
+    printf("--\n");
 }
 
 void perspective_strafe(int direction)
