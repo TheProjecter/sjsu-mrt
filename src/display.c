@@ -8,7 +8,9 @@ float vert[NUM_VERTICES][3];
 int faces[NUM_FACES][3];
 
 static float norm[NUM_VERTICES][3];
-static float tex[NUM_VERTICES][3];
+/*static float tex[NUM_VERTICES][3];*/
+
+static GLuint bunny;
 
 static void get_normal(int i, int j, int k, float *n)
 {
@@ -21,23 +23,7 @@ static void get_normal(int i, int j, int k, float *n)
 
 void display_draw()
 {
-    int i, j;
-
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    glScalef(2, 2, 2);
-
-    glColor3f(1, 1, 1);
-    glBegin(GL_TRIANGLES);
-    for (i = 0; i < NUM_FACES; i++)
-        for (j = 0; j < 3; j++) {
-            int vindex = faces[i][j];
-
-            glNormal3fv(norm[vindex]);
-            glTexCoord3fv(tex[vindex]);
-            glVertex3fv(vert[vindex]);
-        }
-    glEnd();
+    glCallList(bunny);
 }
 
 void display_init()
@@ -59,11 +45,35 @@ void display_init()
         }
     }
 
+#if 0
     for (i = 0; i < NUM_VERTICES; i++) {
         /*vector_normalize(norm[i]);*/
 
         for (j = 0; j < 3; j++)
             tex[i][j] = vert[i][j] * 10 + 1;
     }
+#endif
+
+    bunny = glGenLists(1);
+    glNewList(bunny, GL_COMPILE);
+
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+    glScalef(2, 2, 2);
+
+    glColor3f(1, 1, 1);
+    glBegin(GL_TRIANGLES);
+    for (i = 0; i < NUM_FACES; i++)
+        for (j = 0; j < 3; j++) {
+            int vindex = faces[i][j];
+
+            glNormal3fv(norm[vindex]);
+            /*glTexCoord3fv(tex[vindex]);*/
+            glVertex3fv(vert[vindex]);
+        }
+    glEnd();
+
+    glEndList();
 }
 
