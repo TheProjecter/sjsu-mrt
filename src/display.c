@@ -10,9 +10,6 @@ int faces[NUM_FACES][3];
 static float norm[NUM_VERTICES][3];
 static float tex[NUM_VERTICES][3];
 
-/* rotation controls */
-static int yaw, pitch, roll;
-
 static void get_normal(int i, int j, int k, float *n)
 {
     float first[3], second[3];
@@ -22,28 +19,6 @@ static void get_normal(int i, int j, int k, float *n)
     vector_normalize(n);
 }
 
-void display_rotate_reset()
-{
-    yaw = 0;
-    pitch = 0;
-    roll = 0;
-}
-
-void display_rotate_yaw(int direction)
-{
-    yaw += direction;
-}
-
-void display_rotate_pitch(int direction)
-{
-    pitch += direction;
-}
-
-void display_rotate_roll(int direction)
-{
-    roll += direction;
-}
-
 void display_draw()
 {
     int i, j;
@@ -51,9 +26,6 @@ void display_draw()
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glScalef(2, 2, 2);
-    glRotatef(yaw, 0, 0, 1);
-    glRotatef(pitch, 0, 1, 0);
-    glRotatef(roll, 1, 0, 0);
 
     glColor3f(1, 1, 1);
     glBegin(GL_TRIANGLES);
