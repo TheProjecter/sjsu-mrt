@@ -8,9 +8,13 @@
  * phi is the angle from the y-axis
  * theta is the angle from the z-axis
  */
-float phi, theta;
+float phi = 1.99;
+float theta = -1.04;
 
-static float x, y, z;
+static float x = 17.16;
+static float y = 12.08;
+static float z = 11.35;
+
 static float lx, ly, lz;
 
 static void turn_camera(float p, float t)
@@ -31,12 +35,6 @@ static void position_camera()
 
 void perspective_load()
 {
-    phi = 2.12;
-    theta = -0.97;
-    x = 0.8;
-    y = 0.9;
-    z = 0.8;
-
     turn_camera(phi, theta);
     position_camera();
 }

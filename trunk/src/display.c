@@ -23,7 +23,20 @@ static void get_normal(int i, int j, int k, float *n)
 
 void display_draw()
 {
+    glMatrixMode(GL_MODELVIEW);
+
     glCallList(bunny);
+
+    glPushMatrix();
+    glTranslatef(-5, 2, -10);
+    glutSolidSphere(5, 20, 20);
+    glPopMatrix();
+
+    glPushMatrix();
+    glRotatef(270, 0, 1, 0);
+    glTranslatef(0, -5, 20);
+    glutSolidTeapot(4);
+    glPopMatrix();
 }
 
 void display_init()
@@ -57,10 +70,9 @@ void display_init()
     bunny = glGenLists(1);
     glNewList(bunny, GL_COMPILE);
 
-    glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
-    glScalef(2, 2, 2);
+    glScalef(16, 16, 16);
 
     glColor3f(1, 1, 1);
     glBegin(GL_TRIANGLES);
@@ -74,6 +86,7 @@ void display_init()
         }
     glEnd();
 
+    glPopMatrix();
     glEndList();
 }
 
