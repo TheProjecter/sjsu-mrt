@@ -3,7 +3,7 @@
 #include <GL/glew.h>
 
 /* shaders */
-static GLhandleARB green, negative;
+static GLhandleARB frag_light, negative;
 
 static void glsl_read(GLhandleARB shader, char *filename)
 {
@@ -88,7 +88,7 @@ void shader_select()
         glUseProgramObjectARB(0);
         break;
     case 1:
-        glUseProgramObjectARB(green);
+        glUseProgramObjectARB(frag_light);
         break;
     case 2:
         glUseProgramObjectARB(negative);
@@ -102,7 +102,7 @@ void shader_init()
 {
     glewInit();
 
-    shader_load(&green, "green");
+    shader_load(&frag_light, "frag-lighting");
     shader_load(&negative, "negative");
 }
 
