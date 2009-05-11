@@ -4,6 +4,8 @@
 void shader_select();
 void shader_init();
 
-extern unsigned int shader_main; /* of type GLhandleARB */
+/* variables of type GLhandleARB */
+extern unsigned int shader_main;
+extern unsigned int shader_cel_shading;
 
 #endif /* SHADER_H */

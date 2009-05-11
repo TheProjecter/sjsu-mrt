@@ -1,6 +1,8 @@
 #include <math.h>
+#include <GL/glew.h>
 #include <GL/glut.h>
 #include "ply.h"
+#include "shader.h"
 #include "vector.h"
 #include "display.h"
 
@@ -25,9 +27,11 @@ static void draw_objects()
     glCallList(bunny);
 
     glPushMatrix();
+    glUseProgramObjectARB(shader_cel_shading);
     glTranslatef(-5, 2, -10);
     glColor3f(0.5, 0.5, 0.5);
     glutSolidSphere(5, 20, 20);
+    glUseProgramObjectARB(shader_main);
     glPopMatrix();
 
     glPushMatrix();

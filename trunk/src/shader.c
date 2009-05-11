@@ -5,7 +5,8 @@
 
 /* shaders */
 GLhandleARB shader_main;
-static GLhandleARB frag_light, negative;
+GLhandleARB shader_cel_shading;
+static GLhandleARB frag_light;
 
 static void glsl_read(GLhandleARB shader, char *filename)
 {
@@ -107,7 +108,7 @@ void shader_init()
     glewInit();
 
     shader_load(&frag_light, "frag-lighting");
-    shader_load(&negative, "negative");
+    shader_load(&shader_cel_shading, "cel-shading");
 
     shader_main = frag_light;
     glUseProgramObjectARB(shader_main);
