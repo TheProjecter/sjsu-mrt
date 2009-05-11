@@ -8,7 +8,6 @@ float vert[NUM_VERTICES][3];
 int faces[NUM_FACES][3];
 
 static float norm[NUM_VERTICES][3];
-/*static float tex[NUM_VERTICES][3];*/
 
 static GLuint bunny;
 
@@ -81,7 +80,6 @@ void display_init()
             int vindex = faces[i][j];
 
             glNormal3fv(norm[vindex]);
-            /*glTexCoord3fv(tex[vindex]);*/
             glVertex3fv(vert[vindex]);
         }
     glEnd();
