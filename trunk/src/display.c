@@ -28,12 +28,14 @@ void display_draw()
 
     glPushMatrix();
     glTranslatef(-5, 2, -10);
+    glColor3f(0.5, 0.5, 0.5);
     glutSolidSphere(5, 20, 20);
     glPopMatrix();
 
     glPushMatrix();
     glRotatef(270, 0, 1, 0);
     glTranslatef(0, -5, 20);
+    glColor3f(1, 1, 1);
     glutSolidTeapot(4);
     glPopMatrix();
 }
@@ -57,15 +59,6 @@ void display_init()
         }
     }
 
-#if 0
-    for (i = 0; i < NUM_VERTICES; i++) {
-        /*vector_normalize(norm[i]);*/
-
-        for (j = 0; j < 3; j++)
-            tex[i][j] = vert[i][j] * 10 + 1;
-    }
-#endif
-
     bunny = glGenLists(1);
     glNewList(bunny, GL_COMPILE);
 
@@ -73,7 +66,7 @@ void display_init()
     glLoadIdentity();
     glScalef(16, 16, 16);
 
-    glColor3f(1, 1, 1);
+    glColor3ub(92, 64, 55);
     glBegin(GL_TRIANGLES);
     for (i = 0; i < NUM_FACES; i++)
         for (j = 0; j < 3; j++) {
