@@ -3,7 +3,6 @@
 #include "callback.h"
 #include "perspective.h"
 #include "shader.h"
-#include "texture.h"
 #include "main.h"
 
 static void lighting_init()
