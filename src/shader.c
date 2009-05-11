@@ -6,7 +6,7 @@
 /* shaders */
 GLhandleARB shader_main;
 GLhandleARB shader_cel_shading;
-static GLhandleARB frag_light;
+static GLhandleARB frag_lighting;
 
 static void glsl_read(GLhandleARB shader, char *filename)
 {
@@ -82,35 +82,31 @@ static void shader_load(GLhandleARB *shader, char *name)
     print_info_log(*shader);
 }
 
-#if 0
 void shader_select()
 {
-    static int counter = 1;
+    static int counter = 0;
 
-    switch (counter % 3) {
+    switch (counter % 2) {
     case 0:
-        glUseProgramObjectARB(0);
+        shader_main = 0;
         break;
     case 1:
-        glUseProgramObjectARB(frag_light);
-        break;
-    case 2:
-        glUseProgramObjectARB(negative);
+        shader_main = frag_lighting;
         break;
     }
 
+    glUseProgramObjectARB(shader_main);
     counter++;
 }
-#endif
 
 void shader_init()
 {
     glewInit();
 
-    shader_load(&frag_light, "frag-lighting");
+    shader_load(&frag_lighting, "frag-lighting");
     shader_load(&shader_cel_shading, "cel-shading");
 
-    shader_main = frag_light;
+    shader_main = frag_lighting;
     glUseProgramObjectARB(shader_main);
 }
 
