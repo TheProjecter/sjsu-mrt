@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <GL/glew.h>
+#include "shader.h"
 
 /* shaders */
+GLhandleARB shader_main;
 static GLhandleARB frag_light, negative;
 
 static void glsl_read(GLhandleARB shader, char *filename)
@@ -79,6 +81,7 @@ static void shader_load(GLhandleARB *shader, char *name)
     print_info_log(*shader);
 }
 
+#if 0
 void shader_select()
 {
     static int counter = 1;
@@ -97,6 +100,7 @@ void shader_select()
 
     counter++;
 }
+#endif
 
 void shader_init()
 {
@@ -104,5 +108,8 @@ void shader_init()
 
     shader_load(&frag_light, "frag-lighting");
     shader_load(&negative, "negative");
+
+    shader_main = frag_light;
+    glUseProgramObjectARB(shader_main);
 }
 
