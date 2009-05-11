@@ -32,7 +32,6 @@ int main(int argc, char *argv[])
     glClearColor(0, 0, 0, 1);
 
     glEnable(GL_DEPTH_TEST);
-    /*glEnable(GL_TEXTURE_3D);*/
     glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_LIGHTING);
     glEnable(GL_NORMALIZE);
@@ -40,7 +39,6 @@ int main(int argc, char *argv[])
     callback_init();
     perspective_init();
     lighting_init();
-    /*texture_init();*/
     display_init();
     shader_init();
 
