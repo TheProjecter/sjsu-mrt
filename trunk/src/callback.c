@@ -41,11 +41,9 @@ static void callback_keyboard(unsigned char key, int x, int y)
     case 'p':
         perspective_print();
         break;
-#if 0
     case ' ':
         shader_select();
         break;
-#endif
     }
 
     glutPostRedisplay();
