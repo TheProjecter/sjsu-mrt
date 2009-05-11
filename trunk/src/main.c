@@ -30,6 +30,7 @@ int main(int argc, char *argv[])
     glutCreateWindow(TITLE);
     glClearColor(0, 0, 0, 1);
 
+    glDisable(GL_TEXTURE_2D);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_LIGHTING);

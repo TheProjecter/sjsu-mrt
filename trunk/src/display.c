@@ -20,10 +20,8 @@ static void get_normal(int i, int j, int k, float *n)
     vector_normalize(n);
 }
 
-void display_draw()
+static void draw_objects()
 {
-    glMatrixMode(GL_MODELVIEW);
-
     glCallList(bunny);
 
     glPushMatrix();
@@ -38,6 +36,13 @@ void display_draw()
     glColor3f(1, 1, 1);
     glutSolidTeapot(4);
     glPopMatrix();
+}
+
+void display_draw()
+{
+    glMatrixMode(GL_MODELVIEW);
+
+    draw_objects();
 }
 
 void display_init()
