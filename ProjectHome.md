@@ -1,0 +1,3 @@
+This project is a graphical program that demonstrates the use of [shaders](http://en.wikipedia.org/wiki/Shader) to show various effects such as [reflection](http://en.wikipedia.org/wiki/Reflection_mapping), [per-pixel shading](http://en.wikipedia.org/wiki/Per-pixel_lighting), and [bump-mapping](http://en.wikipedia.org/wiki/Bump_mapping). It is coded in [C](http://en.wikipedia.org/wiki/C_(programming_language)) and uses [OpenGL](http://en.wikipedia.org/wiki/OpenGL) and [GLSL](http://en.wikipedia.org/wiki/GLSL).
+
+This is a student project for the [Spring 2009 CS 116B course](http://www.cs.sjsu.edu/~teoh/teaching/cs116b/) at [San Jose State University](http://www.sjsu.edu/).
